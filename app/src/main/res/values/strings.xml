@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">All2Download</string>
+    <string name="wechat">WeChat</string>
+    <string name="telegram" translatable="false">Telegram</string>
+    <string name="qq" translatable="false">QQ</string>
+    <string name="fatal_error">Oh.. There is something wrong, please try to restart me</string>
+</resources>
