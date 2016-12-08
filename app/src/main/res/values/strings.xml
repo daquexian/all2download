@@ -4,4 +4,5 @@
     <string name="telegram" translatable="false">Telegram</string>
     <string name="qq" translatable="false">QQ</string>
     <string name="fatal_error">Oh.. There is something wrong, please try to restart me</string>
+    <string name="external_storage_permission_rationable">We need permission on external storage, or the app could not work properly. Don\'t worried about privacy and security, this app is open sourced on GitHub: https://github.com/daquexian/all2download</string>
 </resources>
