@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
                                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
                                 }
                             }).show();
-
+                } else {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
                 }
             } else {
                 startWorking();
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void startWorking() {
         LinearLayout layout = (LinearLayout) findViewById(R.id.activity_main);
         final SharedPreferences sharedPreferences = getSharedPreferences(Constants.SP_NAME, MODE_PRIVATE);
-        observerInt[0] = sharedPreferences.getInt(Constants.SP_NAME, Integer.MIN_VALUE);
+        observerInt[0] = sharedPreferences.getInt(Constants.SP_NAME, Integer.MAX_VALUE);
         LogUtil.d(TAG, "startWorking: " + observerInt[0]);
         for (int i = 0; i < isObservering.length; i++) {
             isObservering[i] = (observerInt[0] & (1 << i)) > 0;
