@@ -1,5 +1,7 @@
 ## All2Download
 
+* [Google Play](https://play.google.com/store/apps/details?id=com.daquexian.all2download)
+
 * 这是窝做的一个小应用，因为电脑上没有QQ所以收别人从QQ传来的东西或者把电脑上的东西通过QQ传给别人经常要经过 手机QQ <-> 手机端Telegram <-> 电脑端Telegram 之类的步骤，直接使用分享功能在QQ里经常会被报“文件不存在”。。所以就做了这么一个小东西，从QQ、Telegram上接收的文件，会自动出现在系统自带的Download Manager中，这样子会方便很多。原理就是用FileObserver监控这几个app放置接收到的文件的文件夹，然后搭一个本地服务器，有新文件的时候把指向本地服务器的相应url给Download Manager，让它以为是一次网络上的下载（因为它只接受http和https协议的url）。
 
 * 后续会添加对更多应用的支持。
