@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">All2Download</string>
-    <string name="wechat">WeChat</string>
+    <string name="wechat">WeChat Image (only saved manually)</string>
     <string name="telegram" translatable="false">Telegram</string>
     <string name="qq" translatable="false">QQ</string>
     <string name="fatal_error">Oh.. There is something wrong, please try to restart me</string>
     <string name="external_storage_permission_rationable">We need permission on external storage, or the app could not work properly. Don\'t worried about privacy and security, this app is open sourced on GitHub: https://github.com/daquexian/all2download</string>
+    <string name="welcome_message">Welcome~~ It seems that you are new to All2Download. The way to use it is so easy, turn on the switch of the folders you want to monitor, then everything is OK. This app is open sourced at https://github.com/daquexian/all2download</string>
 </resources>

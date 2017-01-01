@@ -7,10 +7,10 @@ import android.os.Environment;
  * Constants
  */
 
+@SuppressWarnings("WeakerAccess")
 public class Constants {
-    public final static int NUM = 3;
     public final static String SP_NAME = "all2download";
-    public final static String IS_FISRT_TIME = "isFirstTime";
+    public final static String IS_FIRST_TIME = "isFirstTime";
     public final static String[] DIRECTORIES = new String[]{Environment.getExternalStorageDirectory().getAbsolutePath() + "/Tencent/QQfile_recv/",
             Environment.getExternalStorageDirectory().getAbsolutePath() + "/Telegram/Telegram Documents/",
             Environment.getExternalStorageDirectory().getAbsolutePath() + "/tencent/MicroMsg/WeChat/"};

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
+ * start on boot
  * Created by daquexian on 16-12-7.
  */
 

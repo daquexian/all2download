@@ -1,5 +1,6 @@
 package com.daquexian.all2download;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
@@ -9,6 +10,7 @@ import android.content.Context;
  */
 
 public class MyApplication extends Application {
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     @Override
     public void onCreate() {

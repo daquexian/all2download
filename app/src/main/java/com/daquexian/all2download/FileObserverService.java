@@ -2,6 +2,7 @@ package com.daquexian.all2download;
 
 import android.app.DownloadManager;
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Binder;
@@ -10,6 +11,7 @@ import android.os.FileObserver;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -115,47 +117,39 @@ public class FileObserverService extends Service {
 
         @Override
         public Response serve(IHTTPSession session) {
-            String[] prefix = {".doc", ".dot", ".docx", ".dotx", ".docm", ".dotm", ".xls", ".xlt", ".xla", ".xlsx",
-                    ".xltx", ".xlsm", ".xltm", ".xlam", ".xlsb", ".ppt", ".pot", ".pps", ".ppa", ".pptx", ".potx", ".ppsx",
-                    ".ppam", ".pptm", ".potm", ".ppsm", ".jpg", ".jpeg", ".png", ".gif", ".js", ".pdf"};
-            String[] mimeType = {"application/msword", "application/msword",
-                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
-                    "application/vnd.ms-word.document.macroEnabled.12", "application/vnd.ms-word.document.macroEnabled.12",
-                    "application/vnd.ms-excel", "application/vnd.ms-excel", "application/vnd.ms-excel",
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
-                    "application/vnd.ms-excel.sheet.macroEnabled.12", "application/vnd.ms-excel.template.macroEnabled.12",
-                    "application/vnd.ms-excel.addin.macroEnabled.12", "application/vnd.ms-excel.sheet.binary.macroEnabled.12",
-                    "application/vnd.ms-powerpoint", "application/vnd.ms-powerpoint", "application/vnd.ms-powerpoint",
-                    "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                    "application/vnd.openxmlformats-officedocument.presentationml.template",
-                    "application/vnd.openxmlformats-officedocument.presentationml.slideshow",
-                    "application/vnd.ms-powerpoint.addin.macroEnabled.12",
-                    "application/vnd.ms-powerpoint.presentation.macroEnabled.12",
-                    "application/vnd.ms-powerpoint.template.macroEnabled.12",
-                    "application/vnd.ms-powerpoint.slideshow.macroEnabled.12",
-                    "image/jpeg", "image/jpeg", "image/png", "image/gif", "application/x-javascript", "application/pdf"};
             FileInputStream fileInputStream;
             String path = session.getUri();
+            /**
+             * {@link path} is exactly the URI of the file in storage
+             */
             LogUtil.d(TAG, "serve: " + path);
 
             try {
                 fileInputStream = new FileInputStream(path);
             } catch (IOException ioe) {
-                Log.w("Httpd", ioe.toString());
                 return null;
             }
 
-            String type = NanoHTTPD.MIME_PLAINTEXT;
-            for (int i = 0; i < prefix.length; i++) {
-                String p = prefix[i];
-                if (path.endsWith(p)) {
-                    type = mimeType[i];
-                    break;
-                }
-            }
+            String type = getMimeType(Uri.fromFile(new File(path)));
+
             return newChunkedResponse(Response.Status.OK, type, fileInputStream);
+        }
+
+        private String getMimeType(Uri uri) {
+            String mimeType;
+            if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+                ContentResolver cr = MyApplication.getContext().getContentResolver();
+                mimeType = cr.getType(uri);
+            } else {
+                String fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri
+                        .toString());
+                mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+                        fileExtension.toLowerCase());
+            }
+            if (mimeType == null) {
+                mimeType = NanoHTTPD.MIME_PLAINTEXT;
+            }
+            return mimeType;
         }
     }
 }

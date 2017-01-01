@@ -7,10 +7,10 @@ import android.util.Log;
  * Utilities for log
  */
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class LogUtil {
     public static void d(String tag, String message) {
-        //if (BuildConfig.DEBUG) Log.d(tag, message);
-        Log.d(tag, message);
+        if (BuildConfig.DEBUG) Log.d(tag, message);
     }
     public static void w(String tag, String message) {
         if (BuildConfig.DEBUG) Log.w(tag, message);

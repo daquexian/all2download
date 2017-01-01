@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">All2Download</string>
-    <string name="wechat">微信</string>
+    <string name="wechat">微信图片（仅手动保存的）</string>
     <string name="fatal_error">遇到了错误，请尝试重新打开app</string>
     <string name="external_storage_permission_rationable">需要外部存储权限才能让应用正常运行-w- app是开源的所以请不要担心隐私及安全问题~，源码位于https://github.com/daquexian/all2download，欢迎来访~</string>
+    <string name="welcome_message">欢迎使用All2Download～这个app的使用方法很简单，打开您想要监控的文件夹的开关，app会自动在后台为您监控新文件（EMUI等后台管理较严的国产系统的用户请把本应用加到白名单~）。本应用是开源的，GitHub: daquexian/All2Download</string>
 </resources>
